@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alok Singh Parihar | Full Stack Developer</title>
+    <style>
+        :root {
+            --primary: #b69d74;
+            --secondary: #2d2d39;
+            --light: #f5f5f7;
+            --dark: #1a1a1a;
+            --accent: #a88a5c;
+            --metallic-light: #e0d2b8;
+            --metallic-dark: #7d6b46;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--secondary), var(--dark));
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--metallic-light);
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-left: 30px;
+        }
+        
+        .menu a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .menu a:hover {
+            color: var(--primary);
+        }
+        
+        #hero {
+            background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(26, 26, 26, 0.9)), url('/api/placeholder/1200/800') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            width: 60%;
+        }
+        
+        .hero-image {
+            width: 35%;
+            border: 3px solid var(--accent);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .highlight {
+            color: var(--primary);
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            max-width: 600px;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--metallic-dark));
+            color: var(--light);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        #about {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--dark), var(--secondary));
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .project-img img {
+            width: 100%;            /* make the image fit the container */
+            height: 200px;          /* limit the height */
+            object-fit: cover;      /* crop nicely instead of stretching */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: block;
+        }
+        
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .about-text {
+            width: 100%;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        #skills {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--secondary), var(--dark));
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .skill-category {
+            width: 100%;
+            max-width: 500px;
+            background: linear-gradient(to bottom right, rgba(45, 45, 57, 0.9), rgba(26, 26, 26, 0.9));
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .skill-item {
+            background: linear-gradient(to right, var(--secondary), var(--dark));
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid var(--primary);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(182, 157, 116, 0.3);
+        }
+        
+        #projects {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--dark), var(--secondary));
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: linear-gradient(to bottom right, rgba(45, 45, 57, 0.9), rgba(26, 26, 26, 0.9));
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--secondary);
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(182, 157, 116, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .project-description {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tag {
+            background-color: rgba(182, 157, 116, 0.2);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            border: 1px solid var(--primary);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-link {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: var(--primary);
+        }
+        
+        #contact {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--secondary), var(--dark));
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: var(--primary);
+        }
+        
+        .contact-link i {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--secondary);
+            color: var(--light);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(182, 157, 116, 0.3);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--secondary);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            color: var(--light);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .hero-image {
+                width: 60%;
+            }
+            
+            .about-img {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .about-text {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-image {
+                width: 80%;
+            }
+            
+            .skill-category {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Alok<span>SP</span></a>
+                <ul class="menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Hi, I'm <span class="highlight">Alok Singh Parihar</span></h1>
+                    <p>Full Stack Developer specializing in web and mobile application development with expertise in Django, Flask, React, Flutter, and more.</p>
+                    <a href="#contact" class="cta-btn">Get In Touch</a>
+                </div>
+                <div class="hero-image">
+                    <img src="static/aloksp.JPG" alt="Alok Singh Parihar">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a passionate Full Stack Developer with extensive experience in building web and mobile applications. My expertise spans across front-end technologies like React and Flutter, back-end frameworks such as Django and Flask, and database management systems. I enjoy solving complex problems and creating efficient, user-friendly applications.</p>
+                    <p>With a strong foundation in both front-end and back-end development, I bring a comprehensive approach to every project. I'm constantly exploring new technologies and methodologies to enhance my skills and deliver cutting-edge solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Backend Development</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">Django</div>
+                        <div class="skill-item">Flask</div>
+                        <div class="skill-item">SQL</div>
+                        <div class="skill-item">REST API</div>
+                        <div class="skill-item">Python</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend Development</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">React</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">HTML5</div>
+                        <div class="skill-item">CSS3</div>
+                        <div class="skill-item">Bootstrap</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Mobile Development</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">Flutter</div>
+                        <div class="skill-item">Dart</div>
+                        <div class="skill-item">Mobile UI/UX</div>
+                        <div class="skill-item">Cross-platform Development</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>AI & Machine Learning</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">LangChain</div>
+                        <div class="skill-item">Machine Learning</div>
+                        <div class="skill-item">Data Analysis</div>
+                        <div class="skill-item">AI Integration</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Desktop Development</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">Windows Software Development</div>
+                        <div class="skill-item">Desktop Applications</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Others</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">Git</div>
+                        <div class="skill-item">Docker</div>
+                        <div class="skill-item">CI/CD</div>
+                        <div class="skill-item">Agile/Scrum</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="static/e commerse.jpg" alt="E-Commerce Platform">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <p class="project-description">A fully functional e-commerce platform with payment integration, inventory management, and analytics dashboard.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">SQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="static/fitness.jpg" alt="Fitness Tracking App">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Fitness Tracking App</h3>
+                        <p class="project-description">A cross-platform mobile application for tracking workouts, nutrition, and health metrics with data visualization.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">SQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="static/chatbot.jpg" alt="AI-Powered Chatbot">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI-Powered Chatbot</h3>
+                        <p class="project-description">An intelligent customer service chatbot with natural language processing capabilities for providing support.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">React</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="static/inventory.jpg" alt="Inventory Management System">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Inventory Management System</h3>
+                        <p class="project-description">A desktop application for small businesses to manage inventory, sales, and generate reports.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Windows Dev</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="static/Dashboard.png" alt="Financial Dashboard">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Financial Dashboard</h3>
+                        <p class="project-description">An interactive web dashboard for financial data analysis with predictive analytics features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">Machine Learning</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="static/task.jpg" alt="Task Management App">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p class="project-description">A collaborative task management application with real-time updates and team communication features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">SQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Project →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>I'm interested in freelance opportunities, especially ambitious or large projects. However, if you have other requests or questions, don't hesitate to contact me.</p>
+                    <div class="contact-links">
+                        <a href="mailto:pariharaloksingh4@gmail.com" class="contact-link">
+                            <i>📧</i>
+                            <span>pariharaloksingh4@gmail.com</span>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i>📱</i>
+                            <span>Contact Number +91 9926941129</span>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i>📍</i>
+                            <span>Location- vijay nagar indore(M.P)</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="#" class="social-link">G</a>
+                    <a href="#" class="social-link">L</a>
+                    <a href="#" class="social-link">T</a>
+                    <a href="#" class="social-link">I</a>
+                </div>
+                <p class="copyright">© 2025 Alok Singh Parihar. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
