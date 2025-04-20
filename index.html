@@ -791,7 +791,6 @@
             </div>
         </div>
     </section>
-    
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -805,5 +804,35 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real application, you would send this data to your server
+            // For demonstration purposes, we'll just show a success message
+            
+            // Log the form data (you would send this to your backend)
+            console.log("Form submission:", { name, email, subject, message });
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset the form
+            document.getElementById('contactForm').reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
